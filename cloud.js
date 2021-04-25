@@ -56,7 +56,7 @@ AV.Cloud.define('self_wake', function(req) {
     // });
     var url = process.env.ADMIN_URL;
     var requestData = {
-        "comment": "<p>自唤醒</p>\n",
+        "comment": "<p>000</p>\n",
         "nick": "作者",
         "mail": "coder.wendell@qq.com",
         "link": "",
@@ -64,7 +64,7 @@ AV.Cloud.define('self_wake', function(req) {
         "url": "/contact/",
         "insertedAt": {
             "__type": "Date",
-            "iso": Date.now(),
+            "iso": "2021-04-25T14:48:03.993Z"
         },
         "ACL": {
             "*": {
