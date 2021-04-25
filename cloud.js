@@ -99,7 +99,6 @@ AV.Cloud.define('self_wake', function (req) {
             'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994',
         }
     },function (error,response,body){
-            console.log(process.env.ADMIN_URL);
             console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
             console.log(JSON.stringify(response));
     });
