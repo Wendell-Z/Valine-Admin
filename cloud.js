@@ -7,9 +7,9 @@ AV.Cloud.afterSave('Comment', function (request) {
 
     // 通知站长
     mail.notice(currentComment);
-    
+
     // AT评论通知
-    let pid =currentComment.get('pid');
+    let pid = currentComment.get('pid');
 
     if (!pid) {
         console.log("这条评论没有 @ 任何人");
@@ -29,64 +29,78 @@ AV.Cloud.afterSave('Comment', function (request) {
     });
 });
 
-AV.Cloud.define('resend_mails', function(req) {
+AV.Cloud.define('resend_mails', function (req) {
     let query = new AV.Query(Comment);
-    query.greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - 24*60*60*1000));
+    query.greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - 24 * 60 * 60 * 1000));
     query.notEqualTo('isNotified', true);
     // 如果你的评论量很大，可以适当调高数量限制，最高1000
     query.limit(200);
-    return query.find().then(function(results) {
-        new Promise((resolve, reject)=>{
+    return query.find().then(function (results) {
+        new Promise((resolve, reject) => {
             count = results.length;
-            for (var i = 0; i < results.length; i++ ) {
+            for (var i = 0; i < results.length; i++) {
                 sendNotification(results[i], req.meta.remoteAddress);
             }
             resolve(count);
-        }).then((count)=>{
+        }).then((count) => {
             console.log(`昨日${count}条未成功发送的通知邮件处理完毕！`);
-        }).catch(()=>{
+        }).catch(() => {
 
         });
     });
 });
 
-AV.Cloud.define('self_wake', function(req) {
+AV.Cloud.define('self_wake', function (req) {
     // request(process.env.ADMIN_URL, function (error, response, body) {
     //     console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
     // });
-    var url = process.env.ADMIN_URL;
-    var requestData = {
-        "comment": "<p>000</p>\n",
-        "nick": "作者",
-        "mail": "coder.wendell@qq.com",
-        "link": "",
-        "ua": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
-        "url": "/contact/",
-        "insertedAt": {
-            "__type": "Date",
-            "iso": "2021-04-25T14:48:03.993Z"
-        },
-        "ACL": {
-            "*": {
-                "read": true
-            }
-        }
-    };
+    // var url = process.env.ADMIN_URL;
+    // var requestData = {
+    //     "comment": "<p>000</p>\n",
+    //     "nick": "作者",
+    //     "mail": "coder.wendell@qq.com",
+    //     "link": "",
+    //     "ua": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+    //     "url": "/contact/",
+    //     "insertedAt": {
+    //         "__type": "Date",
+    //         "iso": "2021-04-25T14:48:03.993Z"
+    //     },
+    //     "ACL": {
+    //         "*": {
+    //             "read": true
+    //         }
+    //     }
+    // };
+    // request({
+    //     url: url,
+    //     method: 'post',
+    //     json: true,
+    //     headers: {
+    //         'x-lc-id': 'BaNJSwA81SiBNsOhUYoHYi7o-gzGzoHsz',
+    //         'x-lc-session': '7ro088tmbmyqrptbkizrldyi8',
+    //         'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994'
+    //     },
+    //     body: JSON.stringify(requestData)
+    // }, function(error, response, body) {
+    //     console.log(process.env.ADMIN_URL);
+    //     console.log(body);
+    //     console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
+    //     console.log(JSON.stringify(response));
+    // });
+    //get方式请求
+    var url = 'https://avoscloud.com/1.1/classes/Comment?objectId=60858ecc4e85a64c2e8d9182';
     request({
         url: url,
-        method: 'post',
-        json: true,
+        method: 'get',
         headers: {
             'x-lc-id': 'BaNJSwA81SiBNsOhUYoHYi7o-gzGzoHsz',
             'x-lc-session': '7ro088tmbmyqrptbkizrldyi8',
-            'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994'
-        },
-        body: JSON.stringify(requestData)
-    }, function(error, response, body) {
-        console.log(process.env.ADMIN_URL);
-        console.log(body);
-        console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
-        console.log(JSON.stringify(response));
+            'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994',
+        }
+    },function (error,response,body){
+            console.log(process.env.ADMIN_URL);
+            console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
+            console.log(JSON.stringify(response));
     });
-
 })
