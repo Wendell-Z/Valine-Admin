@@ -51,45 +51,8 @@ AV.Cloud.define('resend_mails', function (req) {
 });
 
 AV.Cloud.define('self_wake', function (req) {
-    // request(process.env.ADMIN_URL, function (error, response, body) {
-    //     console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
-    // });
-    // var url = process.env.ADMIN_URL;
-    // var requestData = {
-    //     "comment": "<p>000</p>\n",
-    //     "nick": "作者",
-    //     "mail": "coder.wendell@qq.com",
-    //     "link": "",
-    //     "ua": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
-    //     "url": "/contact/",
-    //     "insertedAt": {
-    //         "__type": "Date",
-    //         "iso": "2021-04-25T14:48:03.993Z"
-    //     },
-    //     "ACL": {
-    //         "*": {
-    //             "read": true
-    //         }
-    //     }
-    // };
-    // request({
-    //     url: url,
-    //     method: 'post',
-    //     json: true,
-    //     headers: {
-    //         'x-lc-id': 'BaNJSwA81SiBNsOhUYoHYi7o-gzGzoHsz',
-    //         'x-lc-session': '7ro088tmbmyqrptbkizrldyi8',
-    //         'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994'
-    //     },
-    //     body: JSON.stringify(requestData)
-    // }, function(error, response, body) {
-    //     console.log(process.env.ADMIN_URL);
-    //     console.log(body);
-    //     console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
-    //     console.log(JSON.stringify(response));
-    // });
     //get方式请求
-    var url = 'https://avoscloud.com/1.1/classes/Comment?objectId=60858ecc4e85a64c2e8d9182';
+    const url = 'https://avoscloud.com/1.1/classes/Comment?objectId=60858ecc4e85a64c2e8d9182';
     request({
         url: url,
         method: 'get',
@@ -100,6 +63,5 @@ AV.Cloud.define('self_wake', function (req) {
         }
     },function (error,response,body){
             console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
-            console.log(JSON.stringify(response));
     });
 })
