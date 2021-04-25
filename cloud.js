@@ -76,7 +76,8 @@ AV.Cloud.define('self_wake', function(req) {
             'x-lc-id': 'BaNJSwA81SiBNsOhUYoHYi7o-gzGzoHsz',
             'x-lc-session': '7ro088tmbmyqrptbkizrldyi8',
             'x-lc-sign': 'd0ec0cc2579ffb7ae3f064ca6fbf5882,1619362083994'
-        }
+        },
+        body: JSON.stringify(requestData)
     },function (error,response,body){
         console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
     });
