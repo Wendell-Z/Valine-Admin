@@ -79,7 +79,9 @@ AV.Cloud.define('self_wake', function(req) {
         },
         body: JSON.stringify(requestData)
     },function (error,response,body){
+        console.log(body);
         console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
+        console.log(JSON.stringify(response));
     });
     // request(process.env.ADMIN_URL, function (error, response, body) {
     //     console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
