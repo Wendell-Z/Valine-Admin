@@ -56,17 +56,17 @@ AV.Cloud.define('self_wake', function (req) {
     // });
     var url = process.env.ADMIN_URL;
     var requestData = {
-        "comment": "自唤醒信息",
-        "nick": "作者",
-        "mail": "coder.wendell@qq.com",
-        "link": "",
-        "ua": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
-        "url": "/contact/",
-        "insertedAt": {
+        comment: "自唤醒信息",
+        nick: "作者",
+        mail: "coder.wendell@qq.com",
+        link: "",
+        ua: "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+        url: "/contact/",
+        insertedAt: {
             "__type": "Date",
             "iso": "2021-04-25T14:48:03.993Z"
         },
-        "ACL": {
+        ACL: {
             "*": {
                 "read": true
             }
@@ -88,5 +88,7 @@ AV.Cloud.define('self_wake', function (req) {
         console.log('自唤醒任务执行成功，响应状态码为:', response && response.statusCode);
         console.log(JSON.stringify(response));
     });
+
+
 
 })
