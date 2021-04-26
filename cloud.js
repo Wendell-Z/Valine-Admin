@@ -88,7 +88,7 @@ AV.Cloud.define('self_wake', function (req) {
     comment.set('link', '');
     comment.set('ua', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36');
     comment.set('url', '/contact/');
-    comment.set('insertAt', '2021-04-25T14:40:03.993Z');
+    comment.set('insertAt', new Date());
     comment.save().then((comment) => {
         console.log('self awake success.');
     }, (error) => {
