@@ -62,15 +62,7 @@ AV.Cloud.define('self_wake', function (req) {
         link: "",
         ua: "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
         url: "/contact/",
-        insertedAt: {
-            "__type": "Date",
-            "iso": "2021-04-25T14:48:03.993Z"
-        },
-        ACL: {
-            "*": {
-                "read": true
-            }
-        }
+        insertedAt: new Date()
     };
     request({
         url: url,
