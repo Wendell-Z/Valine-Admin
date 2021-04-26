@@ -61,7 +61,7 @@ AV.Cloud.define('self_wake', function (req) {
     comment.set('mail', 'coder.wendell@qq.com');
     comment.set('link', '');
     comment.set('ua', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36');
-    comment.set('url', '/contact/');
+    comment.set('url', '/non_exist_url/');
     comment.set('insertAt', JSON.stringify(new Date()));
     comment.save().then((comment) => {
         console.log('self awake success.');
